@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <title>Example plugin</title>
+    <!-- A tree: one root, two branches, three leaves -- which is what the
+         plugin draws, and it inherits the app's colour through currentColor. -->
+    <rect x="11" y="3" width="10" height="7" rx="1.6" />
+    <path d="M16 10v4M7 22v-4h18v4" />
+    <circle cx="7" cy="25.5" r="3.2" />
+    <circle cx="16" cy="25.5" r="3.2" />
+    <circle cx="25" cy="25.5" r="3.2" />
+    <path d="M16 14v8" />
+</svg>

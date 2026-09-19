@@ -1,0 +1,78 @@
+{
+    "$schema": "https://raw.githubusercontent.com/k8sdockside/k8sdockside/main/docs/plugin.schema.json",
+    "id": "example",
+    "name": "Example plugin",
+    "version": "1.0.0",
+    "minAppVersion": "0.0.30",
+    "tagline": "hello world, and then the whole bridge",
+    "icon": "puzzle",
+    "logo": "logo.svg",
+    "author": "K8s Dockside",
+    "authorUrl": "https://github.com/k8sdockside",
+    "docs": "https://github.com/k8sdockside/k8sdockside/blob/main/docs/writing-plugins.md",
+    "links": [
+        { "label": "Source", "url": "https://github.com/k8sdockside/example-plugin" },
+        { "label": "Writing a plugin", "url": "https://github.com/k8sdockside/k8sdockside/blob/main/docs/writing-plugins.md" },
+        { "label": "Plugin reference", "url": "https://github.com/k8sdockside/k8sdockside/blob/main/docs/plugins.md" }
+    ],
+    "description": "A plugin to read rather than to install: hello world on the overview, then a workload tree built by walking ownerReferences, a page it hands an object to, a panel on every Pod, and one of every kind of bridge call. It needs nothing in the cluster but Pods and Deployments, so it works anywhere.",
+
+    "requires": [
+        { "kind": "deployments", "label": "Deployments" },
+        { "kind": "pods", "label": "Pods" }
+    ],
+
+    "cards": [
+        { "label": "Deployments", "kind": "deployments" },
+        {
+            "label": "Pods",
+            "kind": "pods",
+            "groupBy": "status.phase",
+            "tones": { "Running": "ok", "Succeeded": "ok", "Pending": "warn", "Failed": "error", "Unknown": "warn" }
+        }
+    ],
+
+    "overview": { "entry": "overview.html" },
+
+    "views": [
+        { "id": "tree", "label": "Tree", "icon": "share", "type": "custom", "entry": "tree.html" },
+        {
+            "id": "workload",
+            "label": "Workload",
+            "icon": "box",
+            "type": "custom",
+            "entry": "workload.html",
+            "focus": { "kind": "deployments" }
+        }
+    ],
+
+    "sections": [
+        { "id": "owners", "label": "Owner chain", "kind": "pods", "entry": "owners.html", "height": 200 }
+    ],
+
+    "actions": [
+        {
+            "id": "pause",
+            "label": "Pause rollout",
+            "icon": "pause",
+            "kind": "deployments",
+            "confirm": "Pause the rollout of {namespace}/{name}? The Deployment keeps its Pods; it just stops acting on changes.",
+            "done": "{name} is paused",
+            "request": { "type": "patch", "patch": { "spec": { "paused": true } } }
+        },
+        {
+            "id": "resume",
+            "label": "Resume rollout",
+            "icon": "play",
+            "kind": "deployments",
+            "confirm": "Resume the rollout of {namespace}/{name}?",
+            "done": "{name} is rolling again",
+            "request": { "type": "patch", "patch": { "spec": { "paused": null } } }
+        }
+    ],
+
+    "ui": {
+        "kinds": ["pods", "deployments", "replicasets", "statefulsets", "daemonsets"],
+        "write": true
+    }
+}

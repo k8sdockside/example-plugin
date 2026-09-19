@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Tree</title>
+        <!-- The bridge. The app serves it, always at this path, and it must
+             load before the page's own script. -->
+        <script src="/plugin-ui/_sdk/k8sdockside.js"></script>
+        <link rel="stylesheet" href="example.css" />
+    </head>
+    <body>
+        <div id="page">
+            <div class="tabs" id="tabs"></div>
+            <div class="bar">
+                <label for="namespace" class="faint">Namespace</label>
+                <select id="namespace"><option value="">all namespaces</option></select>
+                <input id="search" type="search" placeholder="Filter by name…" aria-label="Filter by name" />
+                <span class="spacer"></span>
+                <span id="summary" class="faint"></span>
+                <button id="expand" type="button">Expand all</button>
+                <button id="collapse" type="button">Collapse all</button>
+            </div>
+            <div class="tree" id="tree"><p class="loading">Reading the cluster…</p></div>
+            <p class="note" id="footnote"></p>
+        </div>
+        <script src="tree.js"></script>
+    </body>
+</html>

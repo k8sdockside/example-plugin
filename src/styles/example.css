@@ -5,7 +5,7 @@
  * no colours of its own follows the app into light or dark without a line of
  * JavaScript. That is the whole trick: do not pick colours.
  *
- * The tokens are listed in k8sdockside.d.ts, on K8sDockside.Theme.
+ * The tokens are listed in @k8sdockside/plugin-sdk's k8sdockside.d.ts, on K8sDockside.Theme.
  */
 
 * {

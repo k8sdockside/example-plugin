@@ -130,7 +130,6 @@ disagree, and so does CI.
 ```
 plugin.json              the manifest -- views, cards, actions, sections
 src/
-  k8sdockside.d.ts       the bridge's types, copied from the app
   model/                 no DOM, all the logic, all the tests
     owners.ts            the ownership tree, and ownerChain
     grouping.ts          the namespace tree
@@ -138,7 +137,7 @@ src/
     tree.ts              the shape both trees are built into
   ui/                    no cluster knowledge, all the DOM
     tree.ts              the renderer both trees share
-    dom.ts               el(), and why there is no innerHTML
+    dom.ts               the SDK's el() and friends, and why there is no innerHTML
   pages/                 one .html + one .ts per page
   styles/                the app's theme tokens, no colours of its own
 ui/                      what the build writes, and what the app serves
@@ -167,7 +166,7 @@ into the page.
 
 - [Writing a plugin](https://github.com/k8sdockside/k8sdockside/blob/main/docs/writing-plugins.md) — the path from an empty folder to this
 - [The plugin reference](https://github.com/k8sdockside/k8sdockside/blob/main/docs/plugins.md) — every manifest field and bridge call
-- [`k8sdockside.d.ts`](https://github.com/k8sdockside/k8sdockside/blob/main/internal/plugins/sdk/k8sdockside.d.ts) — the most precise description of the bridge there is
+- [`@k8sdockside/plugin-sdk`](https://github.com/k8sdockside/k8sdockside/tree/main/packages/plugin-sdk) — the bridge's types, the `k8sdockside-plugin` build and the DOM helpers; its `k8sdockside.d.ts` is the most precise description of the bridge there is
 
 ## License
 
